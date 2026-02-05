@@ -1,18 +1,31 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../CSS/Home.css";
 import airpods from "../assets/airpods.gif";
 import auralis from "../assets/auralisshome.gif";
 import iphone from "../assets/iphone.gif";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
+import "swiper/css";
 import swipeSound from "../assets/swipe.wav";
 
 const Home = () => {
   const swipeAudio = useRef(new Audio(swipeSound));
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  useEffect(() => {
+    const markInteracted = () => setHasInteracted(true);
+    window.addEventListener("pointerdown", markInteracted, { once: true });
+    window.addEventListener("keydown", markInteracted, { once: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", markInteracted);
+      window.removeEventListener("keydown", markInteracted);
+    };
+  }, []);
 
   const handleSlideChange = () => {
-    swipeAudio.current.play();
+    if (!hasInteracted) return;
+    swipeAudio.current.play().catch(() => {});
   };
 
   return (

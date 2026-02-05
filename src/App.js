@@ -16,7 +16,6 @@ import OurTeam from "./components/OurTeam";
 import Login from "./components/Login";
 import Register from "./components/Register"; // Default import
 import Profile from "./components/Profile";
-import { products } from "./components/Products";
 import "./CSS/App.css";
 
 const App = () => {
@@ -67,7 +66,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="/products"
-          element={<Products addToCart={addToCart} products={products} />}
+          element={<Products addToCart={addToCart} />}
         />
         <Route
           path="/productdetails"
