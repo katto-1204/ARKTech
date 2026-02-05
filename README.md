@@ -1,4 +1,4 @@
-# Arktech Storefront
+# ARKTECH
 
 A modern React storefront demo with product listings, product details, cart management, and a simple account flow. Built with Create React App and React Router.
 
